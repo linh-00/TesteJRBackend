@@ -53,22 +53,21 @@ namespace apiToDo.Models
         }
         public List<TarefaDTO> DeletarTarefa(int ID_TAREFA)
         {
-            try
+            //Buscando informação da lista Tarefas
+            List<TarefaDTO> lstResponse = lstTarefas();
+            //Buscando informações da tarefa pelo ID e armazenando na variável tarefa
+            var Tarefa = lstResponse.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
+            //Validando se a tarefa existe
+            if (Tarefa is null)
             {
-                //Buscando informação da lista Tarefas
-                List<TarefaDTO> lstResponse = lstTarefas();
-                //Buscando informações da tarefa pelo ID e armazenando na variável tarefa
-                var Tarefa = lstResponse.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
-                //Removendo a tarefa
-                lstResponse.Remove(Tarefa);
-                //Retornando uma lista com a tarefa removida
-                return lstResponse;
+                //Retornando erro caso a tarefa não exista
+                throw new Exception("Não foi possível deletar sua tarefa");
             }
-            catch (Exception ex)
-            {
-                //Retornando erro "Caso dê erro"
-                throw ex;
-            }
+            //Removendo a tarefa
+            lstResponse.Remove(Tarefa);
+            //Retornando uma lista com a tarefa removida
+            return lstResponse;
+
         }
     }
 }
