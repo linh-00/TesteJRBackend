@@ -1,5 +1,6 @@
-﻿using apiToDo.DTO;
-using apiToDo.Models;
+﻿using Api.ToDo.Repository.Context;
+using Api.ToDo.Repository.DTOs;
+using Api.ToDo.Repository.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -9,10 +10,10 @@ namespace apiToDo.Controllers
     [Route("[controller]")]
     public class TarefasController : ControllerBase
     {
-        private readonly Tasks _TaskModels;
+        private readonly TaskRepository _TaskRepository;
         public TarefasController()
         {
-            _TaskModels = new Tasks();
+            _TaskRepository = new TaskRepository(new TaskContext());
         }
 
         [HttpGet("ListaTarefas")]
@@ -20,7 +21,7 @@ namespace apiToDo.Controllers
         {
             try
             {
-                var lstTasks = _TaskModels.ListTask();
+                var lstTasks = _TaskRepository.GetAllTask();
                 return StatusCode(200, lstTasks);
             }
 
@@ -35,7 +36,7 @@ namespace apiToDo.Controllers
         {
             try
             {
-                var lstTasks = _TaskModels.InsertTask(request);
+                var lstTasks = _TaskRepository.InsertTask(request);
                 return StatusCode(200, lstTasks);
             }
 
@@ -50,7 +51,7 @@ namespace apiToDo.Controllers
         {
             try
             {
-                var lstTasks = _TaskModels.DeleteTask(ID_TAREFA);
+                var lstTasks = _TaskRepository.DeleteTask(ID_TAREFA);
                 return StatusCode(200, lstTasks);
             }
 
@@ -59,13 +60,13 @@ namespace apiToDo.Controllers
                 return StatusCode(400, new { msg = $"Ocorreu um erro em sua API {ex.Message}" });
             }
         }
-        [HttpGet("{id}")]
+        [HttpGet("{Id}")]
         public ActionResult GetByIdTask([FromRoute] int Id)
         {
             try
             {
 
-                var lstTasks = _TaskModels.GetTaskByID(Id);
+                var lstTasks = _TaskRepository.GetTaskByID(Id);
                 return StatusCode(200, lstTasks);
             }
 
@@ -79,7 +80,7 @@ namespace apiToDo.Controllers
         {
             try
             {
-                var lstTasks = _TaskModels.UpdateTask(request);
+                var lstTasks = _TaskRepository.UpdateTask(request);
                 return StatusCode(200, lstTasks);
             }
 

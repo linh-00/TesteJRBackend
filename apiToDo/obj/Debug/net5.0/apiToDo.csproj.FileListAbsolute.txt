@@ -60,3 +60,5 @@ C:\Users\Alinne\source\repos\Teste_Capys\TesteJRBackend\apiToDo\obj\Debug\net5.0
 C:\Users\Alinne\source\repos\Teste_Capys\TesteJRBackend\apiToDo\obj\Debug\net5.0\apiToDo.pdb
 C:\Users\Alinne\source\repos\Teste_Capys\TesteJRBackend\apiToDo\obj\Debug\net5.0\apiToDo.genruntimeconfig.cache
 C:\Users\Alinne\source\repos\Teste_Capys\TesteJRBackend\apiToDo\obj\Debug\net5.0\ref\apiToDo.dll
+C:\Users\Alinne\source\repos\Teste_Capys\TesteJRBackend\apiToDo\bin\Debug\net5.0\Api.ToDo.Repository.dll
+C:\Users\Alinne\source\repos\Teste_Capys\TesteJRBackend\apiToDo\bin\Debug\net5.0\Api.ToDo.Repository.pdb
