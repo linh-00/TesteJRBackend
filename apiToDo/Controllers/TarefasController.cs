@@ -47,7 +47,7 @@ namespace apiToDo.Controllers
             try
             {
                 Tasks tasks = new Tasks();
-                var lstTasks = tasks.DeletarTarefa(ID_TAREFA);
+                var lstTasks = tasks.DeleteTask(ID_TAREFA);
                 return StatusCode(200, lstTasks);
             }
 
