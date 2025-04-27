@@ -55,14 +55,18 @@ namespace apiToDo.Models
         {
             try
             {
+                //Buscando informação da lista Tarefas
                 List<TarefaDTO> lstResponse = lstTarefas();
+                //Buscando informações da tarefa pelo ID e armazenando na variável tarefa
                 var Tarefa = lstResponse.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
-                TarefaDTO Tarefa2 = lstResponse.Where(x => x.ID_TAREFA == Tarefa.ID_TAREFA).FirstOrDefault();
-                lstResponse.Remove(Tarefa2);
+                //Removendo a tarefa
+                lstResponse.Remove(Tarefa);
+                //Retornando uma lista com a tarefa removida
                 return lstResponse;
             }
             catch (Exception ex)
             {
+                //Retornando erro "Caso dê erro"
                 throw ex;
             }
         }
