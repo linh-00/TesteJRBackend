@@ -38,14 +38,13 @@ namespace apiToDo.Models
                 throw ex;
             }
         }
-
-
-        public void InserirTarefa(TarefaDTO Request)
+        public List<TarefaDTO> InserirTarefa(TarefaDTO Request)
         {
             try
             {
-                List<TarefaDTO> lstResponse = lstTarefas();
-                lstResponse.Add(Request);
+                List<TarefaDTO> lstRequest = lstTarefas();
+                lstRequest.Add(Request);
+                return lstRequest;
             }
             catch (Exception ex)
             {
