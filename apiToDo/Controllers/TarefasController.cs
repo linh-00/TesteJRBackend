@@ -9,13 +9,18 @@ namespace apiToDo.Controllers
     [Route("[controller]")]
     public class TarefasController : ControllerBase
     {
+        private readonly Tasks _TaskModels;
+        public TarefasController()
+        {
+            _TaskModels = new Tasks();
+        }
+
         [HttpGet("ListaTarefas")]
         public ActionResult ListTasks()
         {
             try
             {
-                Tasks tasks = new Tasks();
-                var lstTasks = tasks.ListTask();
+                var lstTasks = _TaskModels.ListTask();
                 return StatusCode(200, lstTasks);
             }
 
@@ -30,8 +35,7 @@ namespace apiToDo.Controllers
         {
             try
             {
-                Tasks tasks = new Tasks();
-                var lstTasks = tasks.InsertTask(request);
+                var lstTasks = _TaskModels.InsertTask(request);
                 return StatusCode(200, lstTasks);
             }
 
@@ -46,8 +50,36 @@ namespace apiToDo.Controllers
         {
             try
             {
-                Tasks tasks = new Tasks();
-                var lstTasks = tasks.DeleteTask(ID_TAREFA);
+                var lstTasks = _TaskModels.DeleteTask(ID_TAREFA);
+                return StatusCode(200, lstTasks);
+            }
+
+            catch (Exception ex)
+            {
+                return StatusCode(400, new { msg = $"Ocorreu um erro em sua API {ex.Message}" });
+            }
+        }
+        [HttpGet("{id}")]
+        public ActionResult GetByIdTask([FromRoute] int Id)
+        {
+            try
+            {
+
+                var lstTasks = _TaskModels.GetTaskByID(Id);
+                return StatusCode(200, lstTasks);
+            }
+
+            catch (Exception ex)
+            {
+                return StatusCode(400, new { msg = $"Ocorreu um erro em sua API {ex.Message}" });
+            }
+        }
+        [HttpPut("AtualizaçãoTarefas")]
+        public ActionResult UpdateTasks([FromBody] TaskDTO request)
+        {
+            try
+            {
+                var lstTasks = _TaskModels.UpdateTask(request);
                 return StatusCode(200, lstTasks);
             }
 

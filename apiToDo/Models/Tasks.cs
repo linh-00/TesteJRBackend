@@ -65,5 +65,25 @@ namespace apiToDo.Models
             return lstResponse;
 
         }
+
+        public TaskDTO GetTaskByID(int Id)
+        {
+            TaskDTO task = LstTasks.Where(x => x.ID_TAREFA == Id).FirstOrDefault();
+            if (task is null)
+            {
+                throw new Exception("Tarefa não encontrada, Message");
+            }
+            return task;
+        }
+
+        public List<TaskDTO> UpdateTask(TaskDTO request)
+        {
+            TaskDTO task = LstTasks.Where(x => x.ID_TAREFA == request.ID_TAREFA).FirstOrDefault();
+            if (task is not null)
+            {
+                task.DS_TAREFA = request.DS_TAREFA;
+            }
+            return LstTasks;
+        }
     }
 }
