@@ -9,14 +9,14 @@ namespace apiToDo.Controllers
     [Route("[controller]")]
     public class TarefasController : ControllerBase
     {
-        [HttpGet("lstTarefas")]
-        public ActionResult lstTarefas()
+        [HttpGet("ListaTarefas")]
+        public ActionResult ListTasks()
         {
             try
             {
-                Tarefas tarefas = new Tarefas();
-                var LstTarefas = tarefas.lstTarefas();
-                return StatusCode(200, LstTarefas);
+                Tasks tasks = new Tasks();
+                var lstTasks = tasks.GetAllTasks();
+                return StatusCode(200, lstTasks);
             }
 
             catch (Exception ex)
@@ -26,13 +26,13 @@ namespace apiToDo.Controllers
         }
 
         [HttpPost("InserirTarefas")]
-        public ActionResult InserirTarefas([FromBody] TarefaDTO Request)
+        public ActionResult InsertTasks([FromBody] TaskDTO request)
         {
             try
             {
-                Tarefas tarefas = new Tarefas();
-                var lstTarefas = tarefas.InserirTarefa(Request);
-                return StatusCode(200, lstTarefas);
+                Tasks tasks = new Tasks();
+                var lstTasks = tasks.InsertTask(request);
+                return StatusCode(200, lstTasks);
             }
 
             catch (Exception ex)
@@ -46,9 +46,9 @@ namespace apiToDo.Controllers
         {
             try
             {
-                Tarefas tarefas = new Tarefas();
-                var lstTarefas = tarefas.DeletarTarefa(ID_TAREFA);
-                return StatusCode(200, lstTarefas);
+                Tasks tasks = new Tasks();
+                var lstTasks = tasks.DeletarTarefa(ID_TAREFA);
+                return StatusCode(200, lstTasks);
             }
 
             catch (Exception ex)

@@ -5,27 +5,27 @@ using System.Linq;
 
 namespace apiToDo.Models
 {
-    public class Tarefas
+    public class Tasks
     {
-        public List<TarefaDTO> lstTarefas()
+        public List<TaskDTO> GetAllTasks()
         {
             try
             {
-                List<TarefaDTO> lstTarefas = new List<TarefaDTO>();
+                List<TaskDTO> lstTarefas = new List<TaskDTO>();
 
-                lstTarefas.Add(new TarefaDTO
+                lstTarefas.Add(new TaskDTO
                 {
                     ID_TAREFA = 1,
                     DS_TAREFA = "Fazer Compras"
                 });
 
-                lstTarefas.Add(new TarefaDTO
+                lstTarefas.Add(new TaskDTO
                 {
                     ID_TAREFA = 2,
                     DS_TAREFA = "Fazer Atividad Faculdade"
                 });
 
-                lstTarefas.Add(new TarefaDTO
+                lstTarefas.Add(new TaskDTO
                 {
                     ID_TAREFA = 3,
                     DS_TAREFA = "Subir Projeto de Teste no GitHub"
@@ -38,11 +38,11 @@ namespace apiToDo.Models
                 throw ex;
             }
         }
-        public List<TarefaDTO> InserirTarefa(TarefaDTO Request)
+        public List<TaskDTO> InsertTask(TaskDTO Request)
         {
             try
             {
-                List<TarefaDTO> lstRequest = lstTarefas();
+                List<TaskDTO> lstRequest = GetAllTasks();
                 lstRequest.Add(Request);
                 return lstRequest;
             }
@@ -51,10 +51,10 @@ namespace apiToDo.Models
                 throw ex;
             }
         }
-        public List<TarefaDTO> DeletarTarefa(int ID_TAREFA)
+        public List<TaskDTO> DeletarTarefa(int ID_TAREFA)
         {
             //Buscando informação da lista Tarefas
-            List<TarefaDTO> lstResponse = lstTarefas();
+            List<TaskDTO> lstResponse = GetAllTasks();
             //Buscando informações da tarefa pelo ID e armazenando na variável tarefa
             var Tarefa = lstResponse.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
             //Validando se a tarefa existe
