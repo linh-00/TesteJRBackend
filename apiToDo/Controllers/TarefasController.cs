@@ -41,13 +41,14 @@ namespace apiToDo.Controllers
             }
         }
 
-        [HttpGet("DeletarTarefa")]
+        [HttpDelete("DeletarTarefa")]
         public ActionResult DeleteTask([FromQuery] int ID_TAREFA)
         {
             try
             {
-
-                return StatusCode(200);
+                Tarefas tarefas = new Tarefas();
+                var lstTarefas = tarefas.DeletarTarefa(ID_TAREFA);
+                return StatusCode(200, lstTarefas);
             }
 
             catch (Exception ex)
