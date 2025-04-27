@@ -15,7 +15,7 @@ namespace apiToDo.Controllers
             try
             {
                 Tasks tasks = new Tasks();
-                var lstTasks = tasks.GetAllTasks();
+                var lstTasks = tasks.ListTask();
                 return StatusCode(200, lstTasks);
             }
 
