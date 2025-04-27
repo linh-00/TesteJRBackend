@@ -31,9 +31,9 @@ namespace apiToDo.Models
                     DS_TAREFA = "Subir Projeto de Teste no GitHub"
                 });
 
-                return new List<TarefaDTO>();
+                return lstTarefas;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -47,7 +47,7 @@ namespace apiToDo.Models
                 List<TarefaDTO> lstResponse = lstTarefas();
                 lstResponse.Add(Request);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }
@@ -58,10 +58,10 @@ namespace apiToDo.Models
             {
                 List<TarefaDTO> lstResponse = lstTarefas();
                 var Tarefa = lstResponse.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
-                TarefaDTO Tarefa2 = lstResponse.Where(x=> x.ID_TAREFA == Tarefa.ID_TAREFA).FirstOrDefault();
+                TarefaDTO Tarefa2 = lstResponse.Where(x => x.ID_TAREFA == Tarefa.ID_TAREFA).FirstOrDefault();
                 lstResponse.Remove(Tarefa2);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw ex;
             }

@@ -1,6 +1,5 @@
 ﻿using apiToDo.DTO;
 using apiToDo.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
@@ -10,19 +9,19 @@ namespace apiToDo.Controllers
     [Route("[controller]")]
     public class TarefasController : ControllerBase
     {
-        [Authorize]
-        [HttpPost("lstTarefas")]
+        [HttpGet("lstTarefas")]
         public ActionResult lstTarefas()
         {
             try
             {
-              
-                return StatusCode(200);
+                Tarefas tarefas = new Tarefas();
+                var LstTarefas = tarefas.lstTarefas();
+                return StatusCode(200, LstTarefas);
             }
 
             catch (Exception ex)
             {
-                return StatusCode(400, new { msg = $"Ocorreu um erro em sua API {ex.Message}"});
+                return StatusCode(400, new { msg = $"Ocorreu um erro em sua API {ex.Message}" });
             }
         }
 
