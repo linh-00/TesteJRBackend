@@ -7,54 +7,50 @@ namespace apiToDo.Models
 {
     public class Tasks
     {
-        public List<TaskDTO> GetAllTasks()
-        {
-            try
-            {
-                List<TaskDTO> lstTarefas = new List<TaskDTO>();
+        private readonly List<TaskDTO> LstTasks;
 
-                lstTarefas.Add(new TaskDTO
+        public Tasks()
+        {
+            LstTasks = new List<TaskDTO>()
+            {
+                new TaskDTO
                 {
                     ID_TAREFA = 1,
                     DS_TAREFA = "Fazer Compras"
-                });
+                },
 
-                lstTarefas.Add(new TaskDTO
+                new TaskDTO
                 {
                     ID_TAREFA = 2,
-                    DS_TAREFA = "Fazer Atividad Faculdade"
-                });
+                    DS_TAREFA = "Fazer Atividades Faculdade"
+                },
 
-                lstTarefas.Add(new TaskDTO
+                new TaskDTO
                 {
                     ID_TAREFA = 3,
-                    DS_TAREFA = "Subir Projeto de Teste no GitHub"
-                });
+                    DS_TAREFA = "Subir Projeto de Teste no Github"
+                },
+            };
 
-                return lstTarefas;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
         }
+        public List<TaskDTO> ListTask() => LstTasks;
+
         public List<TaskDTO> InsertTask(TaskDTO Request)
         {
             try
             {
-                List<TaskDTO> lstRequest = GetAllTasks();
-                lstRequest.Add(Request);
-                return lstRequest;
+                LstTasks.Add(Request);
+                return LstTasks;
             }
             catch (Exception ex)
             {
-                throw ex;
+                throw new Exception($"Não foi possível inserir sua tarefa, tente novamente mais tarde, Message:{ex.Message}");
             }
         }
-        public List<TaskDTO> DeletarTarefa(int ID_TAREFA)
+        public List<TaskDTO> DeleteTask(int ID_TAREFA)
         {
             //Buscando informação da lista Tarefas
-            List<TaskDTO> lstResponse = GetAllTasks();
+            List<TaskDTO> lstResponse = LstTasks;
             //Buscando informações da tarefa pelo ID e armazenando na variável tarefa
             var Tarefa = lstResponse.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
             //Validando se a tarefa existe
